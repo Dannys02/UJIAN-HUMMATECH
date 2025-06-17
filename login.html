@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masuk</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&family=Figtree:ital,wght@0,300..900;1,300..900&family=Luxurious+Roman&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: whitesmoke;
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      background-color: black;
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Ip8MoBhnzHt5cEtLODvTTya-nUYMP8yetw&usqp=CAU');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    
+    /* Tambahkan di bagian <style> semua halaman */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+    }
+    
+    .spinner-large {
+      width: 3rem;
+      height: 3rem;
+    }
+    
+    .offline-notification {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #e74c3c;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 10000;
+      animation: fadeIn 0.3s;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      
+      to {
+        opacity: 1;
+      }
+    }
+    
+    .error-404 {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      color: #e74c3c;
+      font-weight: bold;
+    }
+    
+    .kotak-login {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 40px;
+      border-radius: 20px;
+      width: 30%;
+      height: 420px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      position: relative;
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7meg2Rr1p-73JgoeZh-SeVKjQuuJDXXZg7InhklJSNJMcHQ3YHz52aMQ&s=10');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    
+    .judul-login {
+      text-align: center;
+      margin-bottom: 30px;
+      letter-spacing: 0.10em;
+    }
+    
+    .input-grup {
+      position: relative;
+      margin-bottom: 20px;
+      border: 1px solid whitesmoke;
+      border-radius: 30px;
+    }
+    
+    .formulir {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: transparent;
+      width: 100%;
+    }
+    
+    .input {
+      width: 100%;
+      padding: 12px 40px 12px 15px;
+      border: none;
+      border-radius: 30px;
+      outline: none;
+      font-size: 14px;
+      background-color: transparent;
+      color: white;
+    }
+    
+    .input::placeholder {
+      color: white;
+      font-size: 14px;
+    }
+    
+    .ikon-input {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+    }
+    
+    .opsi-lain {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    
+    .opsi-lain input {
+      margin-right: 5px;
+    }
+    
+    .lupa-password {
+      text-decoration: none;
+      color: whitesmoke;
+    }
+    
+    .tombol-masuk {
+      width: 100%;
+      height: 35px;
+      background: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 550;
+      font-style: normal;
+      letter-spacing: 0.10em;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    
+    .tombol-masuk:hover {
+      background: #0090DE;
+      color: white;
+      transform: scale(0.9);
+    }
+    
+    .daftar {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    
+    .daftar a {
+      color: blueviolet;
+    }
+    
+    .feedback {
+      color: #ff6b6b;
+      font-size: 12px;
+      margin-top: 5px;
+      margin-left: 15px;
+      display: none;
+    }
+    
+    @media (max-width: 720px) {
+      .kotak-login {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="kotak-login">
+    <form class="formulir" id="login-formulir">
+      <h2 class="judul-login">Login</h2>
+      
+      <!-- Email Input -->
+      <div class="input-grup">
+        <input type="email" placeholder="Email" class="input" id="input-email" >
+        <i class="fas fa-user ikon-input"></i>
+      </div>
+      <div id="feedback-email" class="feedback">Email harus antara 5-20 karakter dan format valid</div>
+      
+      <!-- Password Input -->
+      <div class="input-grup">
+        <input type="password" placeholder="Password" class="input" id="input-password" >
+        <i class="fas fa-lock ikon-input"></i>
+      </div>
+      <div id="feedback-password" class="feedback">
+        Password harus: minimal 8 karakter, mengandung huruf besar & kecil, dan angka
+      </div>
+      
+      <div class="opsi-lain">
+        <label><input id="checkbox" type="checkbox"> Ingat saya</label>
+        <a href="lupapassword.html" class="lupa-password">Lupa Password?</a>
+      </div>
+      <button id="tombol-login" type="submit" class="tombol-masuk">Login</button>
+      <p class="daftar">Belum punya akun? <a href="daftar.html">Daftar</a></p>
+    </form>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  
+  <script>
+    // Tambahkan ini di script halaman login Anda
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginForm = document.getElementById('login-formulir');
+      const emailInput = document.getElementById('input-email');
+      const passwordInput = document.getElementById('input-password');
+      
+      // Data pengguna dari localStorage
+      const DATA_PENGGUNA = 'data_pengguna';
+      
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+        
+        // Ambil data pengguna dari localStorage
+        const dataPengguna = JSON.parse(localStorage.getItem(DATA_PENGGUNA)) || [];
+        
+        // Cari pengguna dengan email yang cocok
+        const pengguna = dataPengguna.find(user => user.email === email);
+        
+        if (pengguna) {
+          // Periksa password (dalam produksi, bandingkan hash-nya)
+          if (pengguna.password === password) {
+            alert('Login berhasil!');
+            // Redirect ke halaman setelah login
+            window.location.href = '☆index.html';
+          } else {
+            alert('Password salah!');
+          }
+        } else {
+          alert('Email belum terdaftar. Silakan daftar terlebih dahulu.');
+          window.location.href = 'daftar.html';
+        }
+      });
+    });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginForm = document.getElementById('login-formulir');
+      const emailInput = document.getElementById('input-email');
+      const passwordInput = document.getElementById('input-password');
+      const emailFeedback = document.getElementById('feedback-email');
+      const passwordFeedback = document.getElementById('feedback-password');
+      
+      // Validasi Email
+      emailInput.addEventListener('input', function() {
+        const email = emailInput.value;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      });
+      
+      // Validasi Password
+      passwordInput.addEventListener('input', function() {
+        const password = passwordInput.value;
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasNumber = /[0-9]/.test(password);
+        
+        let errorMessages = [];
+        
+        if (password.length < 8) {
+          errorMessages.push('minimal 8 karakter');
+        }
+        if (!hasUpperCase) {
+          errorMessages.push('mengandung huruf besar');
+        }
+        if (!hasLowerCase) {
+          errorMessages.push('mengandung huruf kecil');
+        }
+        if (!hasNumber) {
+          errorMessages.push('mengandung angka');
+        }
+        
+        if (errorMessages.length > 0) {
+          passwordFeedback.textContent = 'Password harus: ' + errorMessages.join(', ');
+          passwordFeedback.style.display = 'block';
+          passwordInput.style.borderColor = '#ff6b6b';
+        } else {
+          passwordFeedback.style.display = 'none';
+          passwordInput.style.borderColor = 'whitesmoke';
+        }
+      });
+      
+      // Validasi Form Submit
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Validasi ulang sebelum submit
+        const email = emailInput.value;
+        const password = passwordInput.value;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasNumber = /[0-9]/.test(password);
+        
+        let isValid = true;
+        
+        // Validasi Email
+        if (email.length < 5 || email.length > 20 || !emailRegex.test(email)) {
+          emailFeedback.textContent = email.length < 5 || email.length > 20 ?
+            'Email harus antara 5-20 karakter' : 'Format email tidak valid';
+          emailFeedback.style.display = 'block';
+          emailInput.style.borderColor = '#ff6b6b';
+          isValid = false;
+        }
+        
+        // Validasi Password
+        if (password.length < 8 || !hasUpperCase || !hasLowerCase || !hasNumber) {
+          let errorMessages = [];
+          if (password.length < 8) errorMessages.push('minimal 8 karakter');
+          if (!hasUpperCase) errorMessages.push('mengandung huruf besar');
+          if (!hasLowerCase) errorMessages.push('mengandung huruf kecil');
+          if (!hasNumber) errorMessages.push('mengandung angka');
+          
+          passwordFeedback.textContent = 'Password harus: ' + errorMessages.join(', ');
+          passwordFeedback.style.display = 'block';
+          passwordInput.style.borderColor = '#ff6b6b';
+          isValid = false;
+        }
+        
+        // Jika valid, submit form
+        if (isValid) {
+          alert('Form valid, siap untuk dikirim!');
+          // loginForm.submit(); // Uncomment ini untuk submit sebenarnya
+        }
+      });
+    });
+    
+    // Fungsi untuk mengecek koneksi
+    function checkConnection() {
+      return navigator.onLine;
+    }
+    
+    // Tampilkan notifikasi offline
+    function showOfflineNotification() {
+      const offlineNotification = document.getElementById('offline-notification');
+      offlineNotification.style.display = 'block';
+      setTimeout(() => {
+        offlineNotification.style.display = 'none';
+      }, 5000);
+    }
+    
+    // Tampilkan loading
+    function showLoading(text = 'Memuat...') {
+      const overlay = document.getElementById('loading-overlay');
+      const loadingText = document.getElementById('loading-text');
+      loadingText.textContent = text;
+      overlay.style.display = 'flex';
+    }
+    
+    // Sembunyikan loading
+    function hideLoading() {
+      document.getElementById('loading-overlay').style.display = 'none';
+    }
+    
+    // Tampilkan error 404
+    function show404Error() {
+      document.getElementById('error-404').style.display = 'block';
+      // Sembunyikan konten utama
+      document.querySelector('.kotak-login, .kotak-daftar, .kotak-reset').style.display = 'none';
+    }
+    
+    // Event listener untuk perubahan koneksi
+    window.addEventListener('online', () => {
+      console.log('Koneksi kembali');
+    });
+    
+    window.addEventListener('offline', () => {
+      showOfflineNotification();
+      console.log('Perangkat offline');
+    });
+    
+    // Loading saat pertama masuk halaman
+    window.addEventListener('DOMContentLoaded', () => {
+      if (!checkConnection()) {
+        show404Error();
+        return;
+      }
+      
+      showLoading('Memuat halaman...');
+      
+      // Simulasikan loading halaman
+      setTimeout(() => {
+        hideLoading();
+      }, 1500);
+    });
+    
+    document.getElementById('login-formulir').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      if (!checkConnection()) {
+        show404Error();
+        return;
+      }
+      
+      showLoading('Memverifikasi data...');
+      
+      // Simulasi proses login
+      setTimeout(() => {
+        hideLoading();
+        // Lanjutkan dengan logika login yang ada
+        const email = document.getElementById('input-email').value;
+        const password = document.getElementById('input-password').value;
+        
+        // ... logika validasi dan login
+      }, 2000);
+    });
+  </script>
+
+  <div id="loading-overlay" class="loading-overlay" style="display: none;">
+    <div class="spinner-border spinner-large text-danger" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <p id="loading-text" style="color: white; margin-top: 15px;">Memuat halaman...</p>
+  </div>
+  
+  <div id="offline-notification" class="offline-notification">
+    Anda sedang offline. Periksa koneksi internet Anda.
+  </div>
+  
+  <div id="error-404" class="error-404">
+    <h2>404 Not Found</h2>
+    <p>Tidak dapat terhubung ke server. Periksa koneksi internet Anda.</p>
+  </div>
+</body>
+
+</html>

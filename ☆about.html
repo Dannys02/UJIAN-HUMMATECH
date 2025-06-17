@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Savate:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Fashion Shop</title>
+    <style>
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-content {
+            text-align: center;
+        }
+        
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
+        
+        .loading-text {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        
+        /* Offline Notification Styles */
+        .offline-notification {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f8f9fa;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .offline-content {
+            max-width: 500px;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .offline-content h1 {
+            color: #dc3545;
+            margin-bottom: 20px;
+        }
+        
+        .offline-content p {
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+        
+        .offline-icon {
+            font-size: 60px;
+            color: #dc3545;
+            margin-bottom: 30px;
+        }
+        
+        .btn-retry {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-retry:hover {
+            background-color: #0b5ed7;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner-border text-danger" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="loading-text">Memuat Fashion Shop...</p>
+        </div>
+    </div>
+    
+    <!-- Offline Notification -->
+    <div class="offline-notification" id="offlineNotification">
+        <div class="offline-content">
+            <h1>404 Not Found</h1>
+            <p>Maaf, tidak dapat terhubung ke internet. Silakan periksa koneksi Anda dan coba lagi.</p>
+            <div class="offline-icon">
+                <i class="fas fa-wifi-slash"></i>
+            </div>
+            <button class="btn-retry" id="retryButton">Coba Lagi</button>
+        </div>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg bg-info-subtle">
+  <div class="container-fluid">
+    <h1 class="navbar-brand" href="#">Fashion<span>Shop</span></h1>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="a-nav active" href="login.html"><i class="fa-solid fa-user"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="a-nav active" href="☆index.html">Beranda</a>
+        </li>
+        <li class="nav-item">
+          <a class="a-nav" href="☆about.html">Tentang</a>
+        </li>
+        <li class="nav-item">
+          <a class="a-nav" href="☆products.html">Produk</a>
+        </li>
+         <li class="nav-item">
+          <a class="a-nav" href="☆detail-products.html">Produk Detail</a>
+        </li>
+        <li class="nav-item">
+          <a class="a-nav" href="☆contact.html">Kontak</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    
+    
+    
+    <section id="about" class="about">
+        <div class="container-about">
+            <div class="border-mainImg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGRttpT16D2uSUp93IEFqswUQDpM3m3HEWOPSzhkCApk6T2jn6On_BTf0&s=10" alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmyQ3WkzP3zg3FcPHS9gUKso59dH4nAkCWT85oJOI5FsqkeUbWqCP6uoh3&s=10" />
+            </div>
+            
+            <div class="container-paragraph">
+                <h1>Tentang Fashion Shop</h1>
+                <p>Fashion Shop didirikan pada tahun 2024 dengan visi untuk menyediakan pakaian berkualitas
+                    tinggi dengan desain yang timeless dan elegan. Kami percaya bahwa fashion bukan hanya
+                    tentang mengikuti tren, tetapi tentang mengekspresikan diri Anda dengan gaya yang autentik.
+                </p>
+                
+                <p>Dengan bahan-bahan pilihan dan proses produksi yang etis, setiap produk kami dibuat dengan
+                    perhatian terhadap detail dan komitmen terhadap keberlanjutan.</p>
+                
+                <p>Tim kami terdiri dari desainer berbakat dan profesional fashion yang berdedikasi untuk
+                    menciptakan koleksi yang menginspirasi dan memenuhi kebutuhan gaya modern Anda.</p>
+                
+                <div class="border-aBtn">
+                    <a href="☆products.html" class="a-btn">Lihat Koleksi Kami</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-3lord">
+            <h2>Pendiri Fashion Shop</h2>
+            <div class="container-lord">
+                
+                <div class="lord-info">
+                    <div class="lord-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2Z2idMJUSQDpqqtaJ1w8IaOK5DneR5LCFQMTPD5Gx8AWzmxVVw9wHSNBk&s=10" alt="Azalea Sarah">
+                    </div>
+                    <div class="lord-text">
+                        <h3 class="team-name">Azalea Sarah</h3>
+                        <p class="team-position">Pendiri & Desainer Utama</p>
+                        <div class="icon-lord">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lord-info">
+                    <div class="lord-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS45RZqFJA6KxRLRq9I66YB-qjbThDDJP0M9K15j0EJR_pCb5a4opbVZ2w&s=10" alt="Lucas Chen">
+                    </div>
+                    <div class="lord-text">
+                        <h3 class="team-name">Lucas chen</h3>
+                        <p class="team-position">Kepala Produksi</p>
+                        <div class="icon-lord">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lord-info">
+                    <div class="lord-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhfddiqJQ2PCzX4pvpVZ9fCKC2mBiEsR_BR2F51RuOJC722lLvdQEvjqE&s=10" style="object-fit: cover; object-position: top;" alt="Calvin Liam">
+                    </div>
+                    <div class="lord-text">
+                        <h3 class="team-name">Calvin Liam</h3>
+                        <p class="team-position">Manajer Pemasaran</p>
+                        <div class="icon-lord">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-tables">
+            <h2>Tim Fashion Shop</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Posisi</th>
+                        <th>Departemen</th>
+                        <th>Bergabung Sejak</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sarah Wijaya</td>
+                        <td><span class="role desain">Kepala Desainer</span></td>
+                        <td>Desain</td>
+                        <td>Jan 2024</td>
+                        <td>Aktif</td>
+                    </tr>
+                    <tr>
+                        <td>Michael Tan</td>
+                        <td><span class="role manager">Manajer Toko</span></td>
+                        <td>Operasional</td>
+                        <td>Mar 2024</td>
+                        <td>Aktif</td>
+                    </tr>
+                    <tr>
+                        <td>Dewi Anggraeni</td>
+                        <td><span class="role sepuh">Penata Busana</span></td>
+                        <td>Kreatif</td>
+                        <td>Jul 2024</td>
+                        <td>Aktif</td>
+                    </tr>
+                    <tr>
+                        <td>Budi Santoso</td>
+                        <td><span class="role merchandiser">Barang Dagang</span></td>
+                        <td>Produk</td>
+                        <td>Sep 2024</td>
+                        <td>Aktif</td>
+                    </tr>
+                    <tr>
+                        <td>Lisa Halim</td>
+                        <td><span class="role desain">Desainer Muda</span></td>
+                        <td>Desain</td>
+                        <td>Feb 2025</td>
+                        <td>Aktif</td>
+                    </tr>
+                    <tr>
+                        <td>Andre Pratama</td>
+                        <td><span class="role tailor">Penjahit</span></td>
+                        <td>Produksi</td>
+                        <td>May 2025</td>
+                        <td>Aktif</td>
+                    </tr>
+                    <tr>
+                        <td>Rina Permata</td>
+                        <td><span class="role sepuh">Penata Busana</span></td>
+                        <td>Kreatif</td>
+                        <td>Nov 2024</td>
+                        <td>Aktif</td>
+                    </tr>
+                    <tr>
+                        <td>Faisal Rahman</td>
+                        <td><span class="role merchandiser">Pembelian</span></td>
+                        <td>Produk</td>
+                        <td>Aug 2024</td>
+                        <td>Aktif</td>
+                    </tr>
+                    <tr>
+                        <td>Maya Sari</td>
+                        <td><span class="role manager">Asisten manajer</span></td>
+                        <td>Operasional</td>
+                        <td>Apr 2024</td>
+                        <td>Aktif</td>
+                    </tr>
+                    <tr>
+                        <td>Kevin Chandra</td>
+                        <td><span class="role desain">Desainer Grafis</span></td>
+                        <td>Desain</td>
+                        <td>Jun 2024</td>
+                        <td>Aktif</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <h5>Tentang Kami</h5>
+                <p>Fashion Shop adalah toko fashion online yang menyediakan pakaian berkualitas tinggi dengan
+                    desain yang timeless dan elegan.</p>
+                <div class="footer-icon">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            
+            <div class="pintas-link">
+                <h5>Link pintasan</h5>
+                <nav class="nav-footer">
+                    <a class="a-footer" href="index.html">Beranda</a>
+                    <a class="a-footer" href="index(tentang).html">Tentang</a>
+                    <a class="a-footer" href="#">Produk</a>
+                    <a class="a-footer" href="☆detail-products.html">Detail Produk</a>
+                    <a class="a-footer" href="#">Kontak</a>
+                </nav>
+            </div>
+            
+            <div class="footer-fashion">
+                <h5>Fashion Shop</h5>
+                <p>Berlangganan Fashion Shop kami untuk mendapatkan penawaran eksklusif dan update produk terbaru.</p>
+                <form id="footer-form">
+                    <div class="footer-border-input">
+                        <input class="input-footer" type="email" placeholder="Alamat Email Anda">
+                    </div>
+                    <button type="submit" class="footer-btn">Berlangganan</button>
+                </form>
+            </div>
+        </div>
+        <div class="border-last-footer">
+            <p>&copy; 2025 Fashion Shop. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+    <script>
+        // Fungsi untuk menampilkan/menyembunyikan loading
+        function showLoading() {
+            document.getElementById('loadingOverlay').style.display = 'flex';
+        }
+        
+        function hideLoading() {
+            document.getElementById('loadingOverlay').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').style.display = 'none';
+            }, 500);
+        }
+        
+        // Cek koneksi internet
+        function checkConnection() {
+            if (!navigator.onLine) {
+                showOfflineNotification();
+            }
+        }
+        
+        // Tampilkan notifikasi offline
+        function showOfflineNotification() {
+            document.getElementById('offlineNotification').style.display = 'flex';
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
+        
+        // Sembunyikan notifikasi offline
+        function hideOfflineNotification() {
+            document.getElementById('offlineNotification').style.display = 'none';
+        }
+        
+        // Coba lagi koneksi
+        document.getElementById('retryButton').addEventListener('click', function() {
+            if (navigator.onLine) {
+                hideOfflineNotification();
+                window.location.reload();
+            } else {
+                alert('Masih offline. Silakan periksa koneksi internet Anda.');
+            }
+        });
+        
+        // Event listener untuk perubahan status koneksi
+        window.addEventListener('online', function() {
+            hideOfflineNotification();
+        });
+        
+        window.addEventListener('offline', function() {
+            showOfflineNotification();
+        });
+        
+        // Tampilkan loading saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            showLoading();
+            checkConnection();
+            
+            // Simulasikan loading halaman
+            setTimeout(function() {
+                hideLoading();
+            }, 1500);
+            
+            // Untuk halaman nyata, sembunyikan loading setelah semua assets selesai dimuat
+            window.addEventListener('load', function() {
+                hideLoading();
+            });
+        });
+        
+        // Hamburger menu toggle function
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.style.display = sidebar.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+
+</html>

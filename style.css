@@ -1,0 +1,1155 @@
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #F9F9F9;
+        font-weight: 400;
+        font-style: normal;
+        display: flex;
+        flex-direction: column;
+        min-height: 100dvh;
+        margin: 0;
+    }
+    
+    section {
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
+        flex: 1;
+        margin-top: 7rem;
+    }
+    
+    /*NAVBAR*/
+    .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 5px 10px;
+        border-radius: 0 0 10px 10px;
+    }
+
+   .navbar-brand {
+        color: blueviolet;
+   }
+
+   .navbar-brand span {
+        color: aqua;
+   }
+
+    .navbar-nav {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .a-nav {
+        color: black;
+        text-decoration: none;
+        padding-bottom: 5px;
+        position: relative;
+        font-weight: 410;
+        font-style: normal;
+        transition: color 0.3s ease-in-out;
+    }
+    
+    .a-nav::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(to right, blueviolet, aquamarine);
+        transition: width 0.3s ease-in-out;
+    }
+    
+    .a-nav:hover::after,
+    .a-nav:focus::after {
+        width: 100%;
+    }
+    
+    .a-nav:hover {
+        color: blueviolet;
+    }
+    
+    /*</>*/
+    
+    /*BERANDA*/
+    .carousel {
+        width: 80%;
+        height: 400px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px black;
+        margin: 0 auto;
+    }
+    
+    .carousel-inner img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+    }
+    
+    .carousel-item {
+        transition: transform 0.6s ease-in-out;
+    }
+    
+    .carousel-caption {
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        padding: 10px;
+    }
+    
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        padding: 10px;
+    }
+    
+    .container-home {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 3rem;
+    }
+    
+    .div-text {
+        width: 80%;
+    }
+    
+    .div-text h1 {
+        font-size: 49px;
+    }
+    
+    .div-text span {
+        color: mediumpurple;
+    }
+    
+    .border-aBtn {
+        text-decoration: none;
+        background-color: blueviolet;
+        color: white;
+        border: none;
+        height: 50px;
+        width: 50%;
+        padding: 20px;
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        animation: aBtn 3s ease infinite;
+    }
+    
+    .border-aBtn:hover {
+        transform: scale(0.9);
+        box-shadow: 20px 20px 20px blueviolet;
+        background-color: aqua;
+    }
+    
+    @keyframes aBtn {
+        0% {
+            box-shadow: 0 0 0 0 rgba(30, 58, 138, 0.4);
+        }
+        
+        70% {
+            box-shadow: 0 0 0 20px rgba(30, 58, 138, 0);
+        }
+        
+        100% {
+            box-shadow: 0 0 0 0 rgba(30, 58, 138, 0);
+        }
+    }
+    
+    .a-btn {
+        text-decoration: none;
+        color: white;
+        font-weight: 600;
+        font-style: normal;
+    }
+    
+    .img-home img {
+        width: 80%;
+        display: flex;
+        margin-left: 100px;
+        border-radius: 50px;
+        animation: imgMainHome 3s ease-in-out infinite;
+        box-shadow: 0 5px 15px #42445A;
+    }
+    
+    @keyframes imgMainHome {
+        
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+    
+    .container-inner {
+        margin-top: 50px;
+    }
+    
+    .second-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 50px;
+    }
+    
+    .card {
+        width: 100%;
+        padding: 20px;
+        border: none;
+        box-shadow: 0 5px 15px #D0D0D0;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .card:hover {
+        transform: translateY(-13px);
+    }
+    
+    .icon-4 {
+        font-size: 2.5rem;
+        color: black;
+        margin-bottom: 1rem;
+    }
+    
+    /*TENTANG INI*/
+    .container-about {
+        display: flex;
+        justify-content: center;
+        justify-content: space-between;
+    }
+    
+    .border-mainImg {
+        display: flex;
+        align-items: center;
+    }
+    
+    .border-mainImg img {
+        width: 90%;
+        border-radius: 20px;
+        box-shadow: 0 5px 5px #42445A;
+        margin-bottom: 5rem;
+        animation: imgMainAbout 3s ease-in-out infinite;
+    }
+    
+    @keyframes imgMainAbout {
+        
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+    
+    .container-paragraph {
+        width: 60%;
+    }
+    
+    .container-paragraph h1 {
+        font-size: 2.6rem;
+        margin-bottom: 1.5rem;
+        letter-spacing: 0.10em;
+        font-weight: 600;
+        font-style: normal;
+    }
+    
+    .container-paragraph p {
+        margin-bottom: 1.5rem;
+        color: #555;
+        line-height: 1.6;
+        font-size: 1.1rem;
+        font-weight: 400;
+        font-style: normal;
+    }
+    
+    /*PENDIRI FASHION SHOP*/
+    .main-3lord {
+        margin-top: 4rem;
+    }
+    
+    .main-3lord h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    .container-lord {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 100px;
+    }
+    
+    .lord-info {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: all 1s ease;
+    }
+    
+    .lord-info:hover {
+        transform: translateY(-10px);
+    }
+    
+    .lord-img {
+        height: 250px;
+        overflow: hidden;
+    }
+    
+    .lord-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.3s ease;
+    }
+    
+    .lord-info:hover .lord-img img {
+        transform: scale(1.05);
+    }
+    
+    .lord-text {
+        padding: 1.5rem;
+    }
+    
+    .lord-text p {
+        color: #AE31CA;
+    }
+    
+    .icon-lord {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .icon-lord a {
+        color: black;
+        font-size: 1.2rem;
+        transition: all 0.3 ease-in-out;
+    }
+    
+    .icon-lord a:hover {
+        color: #0056FF;
+    }
+    
+    
+    /*TABLES TIM FASHION SHOP*/
+    .container-tables {
+        margin-top: 50px;
+    }
+    
+    .container-tables h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 600px;
+    }
+    
+    thead {
+        background-color: #6c757d;
+        color: white;
+    }
+    
+    th,
+    td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    th {
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+    }
+    
+    tbody tr:hover {
+        background-color: #f1f1f1;
+        transition: background-color 0.3s ease;
+    }
+    
+    .role {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+    
+    .desain {
+        background-color: #fff0f6;
+        color: #c2255c;
+    }
+    
+    .sepuh {
+        background-color: #e6f7ff;
+        color: #096dd9;
+    }
+    
+    .merchandiser {
+        background-color: #f6ffed;
+        color: #389e0d;
+    }
+    
+    .manager {
+        background-color: #f9f0ff;
+        color: #722ed1;
+    }
+    
+    .tailor {
+        background-color: #fff7e6;
+        color: #d46b08;
+    }
+    
+    /*PRODUCTS FASHION SHOP*/
+    .products h1 {
+        text-align: center;
+        font-size: 3rem;
+        /* Ukuran besar */
+        font-weight: 700;
+        /* Tebal */
+        color: #333;
+        margin-bottom: 10px;
+    }
+    
+    .p-products {
+        text-align: center;
+        font-size: 1rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+    
+    .container-products {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 50px;
+        padding: 20px;
+        width: 100%;
+        margin-top: 3rem;
+    }
+    
+    .produk-card {
+        background: white;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        transition: 0.3s ease;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    .produk-card:hover {
+        transform: translateY(-10px);
+    }
+    
+    .produk-image {
+        position: relative;
+    }
+    
+    .produk-image img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        object-position: top;
+        display: block;
+        transition: all 0.3s ease;
+    }
+    
+    .produk-card:hover .produk-image img {
+        transform: scale(1.05);
+    }
+    
+    .badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: blueviolet;
+        color: white;
+        font-size: 12px;
+        padding: 5px 10px;
+        border-radius: 20px;
+    }
+    
+    .produk-content {
+        padding: 15px;
+    }
+    
+    .produk-kategori {
+        font-size: 12px;
+        color: blueviolet;
+        font-weight: bold;
+    }
+    
+    .produk-nama {
+        font-size: 16px;
+        margin: 5px 0;
+    }
+    
+    .produk-harga {
+        margin: 10px 0;
+        font-size: 14px;
+    }
+    
+    .produk-detail {
+        font-size: 14px;
+        color: #555;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.4s ease;
+    }
+    
+    .produk-card:hover .produk-detail {
+        opacity: 1;
+        max-height: 100px;
+        margin-top: 10px;
+    }
+    
+    .produk-harga del {
+        color: #999;
+        margin-left: 5px;
+    }
+    
+    .border-detail {
+        background: blueviolet;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-top: 20px;
+        width: 250px;
+        transition: all 0.3s ease;
+    }
+    
+    .border-detail:hover {
+        transform: scale(0.9);
+        background-color: aqua;
+    }
+    
+    .btn-detail {
+        text-decoration: none;
+        color: white;
+        border: none;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    
+    /*DETAIL PRODUCTS FASHION SHOP*/
+    .all-detail-produk {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 100px;
+    }
+    
+    .container-detail {
+        width: 44%;
+        background-color: #fff;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 16px;
+    }
+    
+    .gambar-produk {
+        width: 100%;
+        border-radius: 12px;
+        object-fit: cover;
+        height: 200px;
+        margin-bottom: 16px;
+    }
+    
+    .kedua-detail {
+        padding: 20px;
+    }
+    
+    .teks-produk {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #333;
+    }
+    
+    .harga-produk {
+        margin-bottom: 12px;
+    }
+    
+    .harga-rp {
+        font-size: 16px;
+        font-weight: bold;
+        color: black;
+        margin-right: 10px;
+    }
+    
+    .harga-coret {
+        font-size: 14px;
+        color: #999;
+        margin-left: 5px;
+    }
+    
+    .pilihan-warna,
+    .pilihan-ukuran {
+        margin-bottom: 12px;
+    }
+    
+    .label-warna,
+    .label-ukuran {
+        font-size: 14px;
+        margin-bottom: 4px;
+        color: #555;
+    }
+    
+    .warna-pilihan {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .warna {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid #ccc;
+        cursor: pointer;
+    }
+    
+    .warna.kulit {
+        background-color: #AE6D40;
+    }
+    
+    .warna.abu {
+        background-color: #AAACB9;
+    }
+    
+    .warna.birulaut {
+        background-color: #24598E;
+    }
+    
+    .warna.pink {
+        background-color: #D014BD;
+    }
+    
+    .warna.merah {
+        background-color: red;
+    }
+    
+    .warna.biru {
+        background-color: blue;
+    }
+    
+    .warna.kuning {
+        background-color: yellow;
+    }
+    
+    .warna.birugelap {
+        background-color: #1473D0;
+    }
+    
+    .warna.putih {
+        background-color: whitesmoke;
+    }
+    
+    .warna.hitam {
+        background-color: black;
+    }
+    
+    .warna.jungle {
+        background-color: #2AAA8A;
+    }
+    
+    .ukuran-pilihan {
+        display: flex;
+        gap: 8px;
+    }
+    
+    .ukuran {
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        background-color: #f8f8f8;
+    }
+    
+    .border-tBeli {
+        width: 100%;
+        padding: 10px;
+        background-color: blueviolet;
+        border-radius: 8px;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    
+    .tombol-beli {
+        border: none;
+        color: white;
+        font-weight: 600;
+        font-size: 16px;
+        text-decoration: none;
+    }
+    
+    .border-tBeli:hover {
+        transform: scale(0.9);
+        background-color: aqua;
+    }
+    
+    
+    /*KONTAK FASHION SHOP*/
+    .container-contact {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        max-width: 1200px;
+        margin: auto;
+        flex-wrap: wrap;
+    }
+    
+    .inner-infoKontak {
+        flex: 1;
+        min-width: 300px;
+    }
+    
+    .inner-infoKontak h1 {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+    
+    .inner-infoKontak p {
+        font-size: 15px;
+        color: #555;
+        margin-bottom: 25px;
+        line-height: 1.6;
+    }
+    
+    .border-icon {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        gap: 15px;
+    }
+    
+    .border-icon i {
+        color: blueviolet;
+        font-size: 20px;
+        margin-top: 5px;
+    }
+    
+    .border-icon .info h4 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    
+    .border-icon .info p {
+        margin: 4px 0 0;
+        font-size: 14px;
+        color: #333;
+    }
+    
+    .formulir {
+        flex: 1;
+        min-width: 300px;
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .formulir h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .formulir-input {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .formulir-input label {
+        margin-bottom: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #333;
+    }
+    
+    .formulir-input input,
+    .formulir-input textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        font-size: 14px;
+        resize: vertical;
+    }
+    
+    .formulir-input textarea {
+        min-height: 100px;
+    }
+    
+    .formulir-input button {
+        background-color: blueviolet;
+        color: #fff;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .formulir-input button:hover {
+        transform: scale(0.9);
+        background-color: aqua;
+    }
+    
+    .map-container {
+        margin-top: 3rem;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 10px;
+        width: 100%;
+    }
+    
+    .map-container iframe {
+        width: 100%;
+        height: 400px;
+        border: none;
+    }
+    
+    /*FOOTER FASHION SHOP*/
+    
+    footer {
+        background-color: #333;
+        padding: 4rem 5% 2rem;
+        margin-top: 5rem;
+        width: 100%;
+        color: #bbb;
+    }
+    
+    footer h5 {
+        color: white;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        font-weight: 900;
+        font-style: normal;
+    }
+    
+    footer h5::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 50px;
+        height: 2px;
+        background: linear-gradient(to right, blueviolet, aquamarine);
+    }
+    
+    footer p {
+        font-weight: 400;
+        font-style: normal;
+        letter-spacing: 0.03em;
+        font-size: 1rem;
+    }
+    
+    .footer-container {
+        display: flex;
+        justify-content: center;
+        justify-content: space-between;
+    }
+    
+    .footer-about {
+        width: 30%;
+        padding: 0;
+    }
+    
+    .footer-icon {
+        display: flex;
+        justify-content: start;
+        gap: 20px;
+        margin-top: 25px;
+    }
+    
+    .footer-icon a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        transition: all 0.3s ease;
+    }
+    
+    .footer-icon a:hover {
+        transform: translateY(-5px);
+        color: #096dd9;
+    }
+    
+    .pintas-link {
+        width: 30%;
+    }
+    
+    .nav-footer {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        font-size: 1rem;
+        white-space: nowrap;
+    }
+    
+    .a-footer,
+    .icon-nav-footer {
+        text-decoration: none;
+        color: #bbb;
+        padding-bottom: 5px;
+        position: relative;
+        width: 57px;
+        cursor: pointer;
+    }
+    
+    .a-footer::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(to right, blueviolet, aquamarine);
+        transition: width 0.3s ease-in-out;
+    }
+    
+    .a-footer:focus::after,
+    .a-footer:hover::after {
+        width: 100%;
+    }
+    
+    .footer-border-input {
+        margin-bottom: 1.5rem;
+    }
+    
+    .input-footer {
+        width: 100%;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 18px;
+    }
+    
+    .input-footer:focus {
+        outline: none;
+        border-color: aqua;
+        box-shadow: 0 0 0 3px #8F33B3;
+    }
+    
+    .footer-btn {
+        color: white;
+        background-color: blueviolet;
+        border: none;
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+        transition: all 0.3s ease;
+    }
+    
+    .footer-btn:hover {
+        box-shadow: 0 5px 10px blueviolet;
+        transform: scale(0.9);
+    }
+    
+    .footer-fashion {
+        width: 30%;
+    }
+    
+    .border-last-footer {
+        text-align: center;
+        padding-top: 2rem;
+        margin-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #bbb;
+        font-size: 0.9rem;
+    }
+    
+    
+    @media (max-width: 720px) {
+
+        /*RESPONSIF BERANDA*/
+
+        section {
+            margin-left: 1px;
+            margin-right: 1px;
+            flex: 1;
+            margin-top: 7rem;
+        }
+        
+        .container-home {
+            display: flex;
+            flex-direction: column;
+            margin-top: 3rem;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc9JCr1O2l3nXMalY5faYBrNy00UGcGQIf3mmY6ZpZQ-N5GUAD6kYoylk&s=10');
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: 20px 20px 0 0;
+            padding-bottom: 20px;
+            padding-right: 20px;
+        }
+        
+        .border-aBtn {
+            animation: none;
+            box-shadow: 0;
+        }
+        
+        .border-aBtn:hover {
+            transform: scale(0.9);
+            box-shadow: 0px 5px 10px blueviolet;
+        }
+        
+        .img-home img {
+            display: none;
+        }
+        
+        .second-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px
+        }
+        
+        .card {
+            width: 70%;
+        }
+        
+        /*RESPONSIF TENTANG FASHION SHOP*/
+        .container-about {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .border-mainImg {
+            display: none;
+        }
+        
+        .container-paragraph {
+            width: 90%;
+            margin-left: 30px;
+        }
+        
+        .container-lord {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+        
+        .container-tables {
+            max-width: 100%;
+            overflow-x: auto;
+        }
+        
+        .container-tables h2 {
+            display: none;
+        }
+        
+        .container-tables table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 720px;
+        }
+        
+        .container-tables th,
+        .container-tables td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        /*RESPONSIF PRODUK FASHION SHOP*/
+        .products h1 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .p-products {
+            text-align: center;
+            font-size: 1rem;
+            color: #666;
+            max-width: 400px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .container-products {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /*DETAIL PRODUCTS FASHION SHOP*/
+        .all-detail-produk {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .container-detail {
+            width: 90%;
+        }
+        
+        .footer-container {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+        
+        .footer-about {
+            width: 100%;
+        }
+        
+        .pintas-link {
+            width: 100%;
+        }
+        
+        .nav-footer {
+            white-space: nowrap;
+        }
+        
+        /*RESPONSIF KONTAK FASHION SHOP*/
+        #contact {
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
+        
+        .footer-fashion {
+            width: 100%;
+        }
+    }

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Savate:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Fashion Shop</title>
+  <style>
+    /* Loading Animation */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+    
+    .loading-content {
+      text-align: center;
+    }
+    
+    .spinner-border {
+      width: 3rem;
+      height: 3rem;
+    }
+    
+    .loading-text {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: #333;
+    }
+    
+    /* Offline Notification Styles */
+    .offline-notification {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #f8f9fa;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .offline-content {
+      max-width: 500px;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .offline-content h1 {
+      color: #dc3545;
+      margin-bottom: 20px;
+    }
+    
+    .offline-content p {
+      color: #6c757d;
+      margin-bottom: 30px;
+    }
+    
+    .offline-icon {
+      font-size: 60px;
+      color: #dc3545;
+      margin-bottom: 30px;
+    }
+    
+    .btn-retry {
+      background-color: #0d6efd;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .btn-retry:hover {
+      background-color: #0b5ed7;
+    }
+    
+  </style>
+</head>
+
+<body>
+  
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-content">
+      <div class="spinner-border text-danger" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="loading-text">Memuat Fashion Shop...</p>
+    </div>
+  </div>
+  
+  <!-- Offline Notification -->
+  <div class="offline-notification" id="offlineNotification">
+    <div class="offline-content">
+      <h1>404 Not Found</h1>
+      <p>Maaf, tidak dapat terhubung ke internet. Silakan periksa koneksi Anda dan coba lagi.</p>
+      <div class="offline-icon">
+        <i class="fas fa-wifi-slash"></i>
+      </div>
+      <button class="btn-retry" id="retryButton">Coba Lagi</button>
+    </div>
+  </div>
+  
+  <nav class="navbar navbar-expand-lg bg-info-subtle">
+  <div class="container-fluid">
+    <h1 class="navbar-brand" href="#">Fashion<span>Shop</span></h1>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="a-nav active" href="login.html"><i class="fa-solid fa-user"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="a-nav active" href="☆index.html">Beranda</a>
+        </li>
+        <li class="nav-item">
+          <a class="a-nav" href="☆about.html">Tentang</a>
+        </li>
+        <li class="nav-item">
+          <a class="a-nav" href="☆products.html">Produk</a>
+        </li>
+         <li class="nav-item">
+          <a class="a-nav" href="☆detail-products.html">Produk Detail</a>
+        </li>
+        <li class="nav-item">
+          <a class="a-nav" href="☆contact.html">Kontak</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+  
+  <section id="products" class="products">
+    <h1>Koleksi Produk Kami</h1>
+    <p class="p-products">Temukan gaya yang sempurna dengan koleksi terbaru kami. Setiap item dipilih dengan cermat untuk kualitas dan gaya terbaik.
+    </p>
+    
+    <div class="container-products">
+      
+      <div class="produk-card">
+        <div class="produk-image">
+          <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Produk Image">
+          <span class="badge">New</span>
+        </div>
+        <div class="produk-content">
+          <span class="produk-kategori">Jeans</span>
+          <h5 class="produk-nama">Jeans dress sabrina</h5>
+          <p class="produk-harga">
+            <b>Rp 205.000</b> <del>300.000</del>
+          </p>
+          <div class="produk-detail">
+            ✔ Bahan denim lembut & adem<br>
+            ✔ Model sabrina (off-shoulder) yang elegan<br>
+            ✔ Cocok untuk acara santai & semi-formal<br>
+            ✔ Tersedia ukuran S, M, L, XL
+          </div>
+          <div class="border-detail">
+            <a href="☆detail-products.html" class="btn-detail">Lihat detail</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="produk-card">
+        <div class="produk-image">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSzUTc42TZvODoNb4_Ng3QPOwaCdk2LiIwfK7ROKhHOfRwv2eznk_VoAw&s=10" alt="Produk Image">
+          <span class="badge">New</span>
+        </div>
+        <div class="produk-content">
+          <span class="produk-kategori">Baju</span>
+          <h5 class="produk-nama">Fanela Top Blouse</h5>
+          <p class="produk-harga">
+            <b>Rp 70.000</b> <del>Rp 120.000
+          </p>
+          <div class="produk-detail">
+            ✔ Bahan fanela lembut & tidak menerawang<br>
+            ✔ Model blouse longgar, nyaman dipakai seharian<br>
+            ✔ Cocok untuk gaya kasual, kerja, atau hangout<br>
+            ✔ Tersedia ukuran S–XL, warna netral & pastel
+          </div>
+          <div class="border-detail">
+            <a href="☆detail-products.html" class="btn-detail">Lihat detail</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="produk-card">
+        <div class="produk-image">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHcCpNhSqVyKxxHJ0NW7xRrm8IFWNM5jw7glOUmrawmzgdN_q3E823Y0E&s=10" alt="Produk Image">
+        </div>
+        <div class="produk-content">
+          <span class="produk-kategori">Baju</span>
+          <h5 class="produk-nama">Sprina Set</h5>
+          <p class="produk-harga">
+            <b>Rp 69.000</b>
+          </p>
+          <div class="produk-detail">
+            ✔ Terbuat dari bahan halus yang ringan & adem dipakai seharian<br>
+            ✔ Desain setelan simpel tapi tetap stylish<br>
+            ✔ Nyaman untuk aktivitas harian, santai, hingga acara semi formal<br>
+            ✔ Pilihan ukuran lengkap (S–XL), warna elegan dan earthy tone
+          </div>
+          <div class="border-detail">
+            <a href="☆detail-products.html" class="btn-detail">Lihat detail</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="produk-card">
+        <div class="produk-image">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkss90nKxsS1hYwezz7J80PssBgeR1Q5Ag2PZ_DtmCipyt8PjCPSnbKE6R&s=10" alt="Produk Image">
+        </div>
+        <div class="produk-content">
+          <span class="produk-kategori">Sweater</span>
+          <h5 class="produk-nama">Sweater Maryket Pria</h5>
+          <p class="produk-harga">
+            <b>Rp 48.000</b>
+          </p>
+          <div class="produk-detail">
+            ✔ Bahan rajut tebal, hangat & nyaman di segala cuaca<br>
+            ✔ Potongan regular fit, pas di badan tanpa terasa ketat<br>
+            ✔ Cocok untuk gaya kasual, ngantor, atau nongkrong<br>
+            ✔ Tersedia ukuran S–XXL, warna maskulin & trendy
+          </div>
+          <div class="border-detail">
+            <a href="☆detail-products.html" class="btn-detail">Lihat detail</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="produk-card">
+        <div class="produk-image">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT42NcuNC9rz79Kif9hcPK3B_UlorPZH6nLqxy__2qqmV6Ef-rmTbibX2Q&s=10" alt="Produk Image">
+        </div>
+        <div class="produk-content">
+          <span class="produk-kategori">Blouse Atasan Korean</span>
+          <h5 class="produk-nama">Umy Grosir Baju Remaja</h5>
+          <p class="produk-harga">
+            <b>Rp 33.000</b>
+          </p>
+          <div class="produk-detail">
+            ✔ Desain Korean style yang simpel & elegan<br>
+            ✔ Bahan adem, ringan, dan jatuh saat dipakai<br>
+            ✔ Tersedia dalam 3 warna cantik: putih, kuning, & hitam<br>
+            ✔ Ukuran lengkap S–XL, cocok untuk tampilan chic sehari-hari
+          </div>
+          <div class="border-detail">
+            <a href="☆detail-products.html" class="btn-detail">Lihat detail</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="produk-card">
+        <div class="produk-image">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMVrigQT2UT9SHkB9t1zP1vtVO_Omht7lWLyu3YiV8Z2GHqX6A0fTfKbY&s=10" alt="Produk Image">
+        </div>
+        <div class="produk-content">
+          <span class="produk-kategori">Jaket</span>
+          <h5 class="produk-nama">Jaket Pria Casual Distro</h5>
+          <p class="produk-harga">
+            <b>Rp 152.000</b>
+          </p>
+          <div class="produk-detail">
+            ✔ Bahan kuat & ringan, nyaman dipakai harian<br>
+            ✔ Desain casual modern, cocok untuk gaya aktif pria<br>
+            ✔ Tersedia 2 warna favorit: hitam & putih<br>
+            ✔ Ukuran M, L, dan XL dengan potongan yang pas di badan
+          </div>
+          <div class="border-detail">
+            <a href="☆detail-products.html" class="btn-detail">Lihat detail</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="produk-card">
+        <div class="produk-image">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9s656IyzmW9Q5NWOr-Jw009hrSbA2tt_xDJXmHf5tAD-u2DOO5_YjVsM&s=10" alt="Produk Image">
+          <span class="badge">New</span>
+        </div>
+        <div class="produk-content">
+          <span class="produk-kategori">Baju</span>
+          <h5 class="produk-nama">Two Mix - Dress Gamis</h5>
+          <p class="produk-harga">
+            <b>Rp 160.000</b> <del>Rp 210.000</del>
+          </p>
+          <div class="produk-detail">
+            ✔ Bahan kombinasi lembut & jatuh, nyaman dipakai seharian<br>
+            ✔ Model gamis elegan dengan sentuhan modern<br>
+            ✔ Warna hijau menawan, cocok untuk tampilan anggun<br>
+            ✔ Tersedia ukuran L dan XL, pas untuk gaya santun dan stylish
+          </div>
+          <div class="border-detail">
+            <a href="☆detail-products.html" class="btn-detail">Lihat detail</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="produk-card">
+        <div class="produk-image">
+          <img src="data:image/webp;base64,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" alt="Produk Image">
+        </div>
+        <div class="produk-content">
+          <span class="produk-kategori">Jaket</span>
+          <h5 class="produk-nama">Arc'teryx - Beta Jacket Black</h5>
+          <p class="produk-harga">
+            <b>Rp 6.325.000</b>
+          </p>
+          <div class="border-detail">
+            <a href="☆detail-products.html" class="btn-detail">Lihat detail</a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+  
+  
+  <footer>
+    <div class="footer-container">
+      <div class="footer-about">
+        <h5>Tentang Kami</h5>
+        <p>Fashion Shop adalah toko fashion online yang menyediakan pakaian berkualitas tinggi dengan desain yang
+          timeless dan elegan.</p>
+        <div class="footer-icon">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </div>
+      
+      <div class="pintas-link">
+        <h5>Link pintasan</h5>
+        <nav class="nav-footer">
+          <a class="a-footer" href="☆index.html">Beranda</a>
+          <a class="a-footer" href="☆about.html">Tentang</a>
+          <a class="a-footer" href="☆products.html">Produk</a>
+          <a class="a-footer" href="☆detail-products.html">Detail Produk</a>
+          <a class="a-footer" href="☆contact.html">Kontak</a>
+        </nav>
+      </div>
+      
+      <div class="footer-fashion">
+        <h5>Fashion Shop</h5>
+        <p>Berlangganan Fashion Shop kami untuk mendapatkan penawaran eksklusif dan update produk terbaru.</p>
+        <form id="footer-form">
+          <div class="footer-border-input">
+            <input class="input-footer" type="email" placeholder="Alamat Email Anda">
+          </div>
+          <button type="submit" class="footer-btn">Berlangganan</button>
+        </form>
+      </div>
+    </div>
+    <div class="border-last-footer">
+      <p>&copy; 2025 Fashion Shop. All Rights Reserved.</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  <script src="main.js"></script>
+  <script>
+    // Fungsi untuk menampilkan/menyembunyikan loading
+    function showLoading() {
+      document.getElementById('loadingOverlay').style.display = 'flex';
+    }
+    
+    function hideLoading() {
+      document.getElementById('loadingOverlay').style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('loadingOverlay').style.display = 'none';
+      }, 500);
+    }
+    
+    // Cek koneksi internet
+    function checkConnection() {
+      if (!navigator.onLine) {
+        showOfflineNotification();
+      }
+    }
+    
+    // Tampilkan notifikasi offline
+    function showOfflineNotification() {
+      document.getElementById('offlineNotification').style.display = 'flex';
+      document.getElementById('loadingOverlay').style.display = 'none';
+    }
+    
+    // Sembunyikan notifikasi offline
+    function hideOfflineNotification() {
+      document.getElementById('offlineNotification').style.display = 'none';
+    }
+    
+    // Coba lagi koneksi
+    document.getElementById('retryButton').addEventListener('click', function() {
+      if (navigator.onLine) {
+        hideOfflineNotification();
+        window.location.reload();
+      } else {
+        alert('Masih offline. Silakan periksa koneksi internet Anda.');
+      }
+    });
+    
+    // Event listener untuk perubahan status koneksi
+    window.addEventListener('online', function() {
+      hideOfflineNotification();
+    });
+    
+    window.addEventListener('offline', function() {
+      showOfflineNotification();
+    });
+    
+    // Tampilkan loading saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', function() {
+      showLoading();
+      checkConnection();
+      
+      // Simulasikan loading halaman
+      setTimeout(function() {
+        hideLoading();
+      }, 1500);
+      
+      // Untuk halaman nyata, sembunyikan loading setelah semua assets selesai dimuat
+      window.addEventListener('load', function() {
+        hideLoading();
+      });
+    });
+    
+    // Hamburger menu toggle function
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.style.display = sidebar.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+</body>
+
+</html>

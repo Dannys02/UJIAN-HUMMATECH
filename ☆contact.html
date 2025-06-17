@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Savate:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Fashion Shop</title>
+  <style>
+    .error-message {
+      color: red;
+      font-size: 0.8em;
+      display: block;
+      margin-top: -10px;
+      margin-bottom: 10px;
+      height: 16px;
+      /* Untuk konsistensi spacing */
+    }
+    
+    /* Loading Animation */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+    
+    .loading-content {
+      text-align: center;
+    }
+    
+    .spinner-border {
+      width: 3rem;
+      height: 3rem;
+    }
+    
+    .loading-text {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: #333;
+    }
+    
+    /* Offline Notification Styles */
+    .offline-notification {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #f8f9fa;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .offline-content {
+      max-width: 500px;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .offline-content h1 {
+      color: #dc3545;
+      margin-bottom: 20px;
+    }
+    
+    .offline-content p {
+      color: #6c757d;
+      margin-bottom: 30px;
+    }
+    
+    .offline-icon {
+      font-size: 60px;
+      color: #dc3545;
+      margin-bottom: 30px;
+    }
+    
+    .btn-retry {
+      background-color: #0d6efd;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .btn-retry:hover {
+      background-color: #0b5ed7;
+    }
+    
+  </style>
+</head>
+
+<body>
+  
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-content">
+      <div class="spinner-border text-danger" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="loading-text">Memuat Fashion Shop...</p>
+    </div>
+  </div>
+  
+  <!-- Offline Notification -->
+  <div class="offline-notification" id="offlineNotification">
+    <div class="offline-content">
+      <h1>404 Not Found</h1>
+      <p>Maaf, tidak dapat terhubung ke internet. Silakan periksa koneksi Anda dan coba lagi.</p>
+      <div class="offline-icon">
+        <i class="fas fa-wifi-slash"></i>
+      </div>
+      <button class="btn-retry" id="retryButton">Coba Lagi</button>
+    </div>
+  </div>
+  
+  <nav class="navbar navbar-expand-lg bg-info-subtle">
+  <div class="container-fluid">
+    <h1 class="navbar-brand" href="#">Fashion<span>Shop</span></h1>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="a-nav active" href="login.html"><i class="fa-solid fa-user"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="a-nav active" href="☆index.html">Beranda</a>
+        </li>
+        <li class="nav-item">
+          <a class="a-nav" href="☆about.html">Tentang</a>
+        </li>
+        <li class="nav-item">
+          <a class="a-nav" href="☆products.html">Produk</a>
+        </li>
+         <li class="nav-item">
+          <a class="a-nav" href="☆detail-products.html">Produk Detail</a>
+        </li>
+        <li class="nav-item">
+          <a class="a-nav" href="☆contact.html">Kontak</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+  
+  <section id="contact" class="contact">
+    <div class="container-contact">
+      
+      <div class="inner-infoKontak">
+        <h1>Hubungi Kami</h1>
+        <p>
+          Kami senang mendengar dari Anda! Apakah Anda memiliki pertanyaan tentang produk kami, membutuhkan bantuan dengan pesanan Anda, atau hanya ingin berbagi umpan balik, tim kami siap membantu.
+        </p>
+        
+        <div class="border-icon">
+          <i class="fa-solid fa-location-dot"></i>
+          <div class="info">
+            <h4>Alamat</h4>
+            <p>Dekat Temurejo, Kembiritan, Kec. Genteng, Kabupaten Banyuwangi, Jawa Timur 68465</p>
+          </div>
+        </div>
+        
+        <div class="border-icon">
+          <i class="fa-solid fa-phone"></i>
+          <div class="info">
+            <h4>Telepon</h4>
+            <p>+62 85 645 837 298</p>
+          </div>
+        </div>
+        
+        <div class="border-icon">
+          <i class="fa-solid fa-envelope"></i>
+          <div class="info">
+            <h4>Email</h4>
+            <p>danis.samsunga01@gmail.com</p>
+          </div>
+        </div>
+        
+        <div class="border-icon">
+          <i class="fa-solid fa-clock"></i>
+          <div class="info">
+            <h4>Jam Operasional</h4>
+            <p>Senin - Jumat: 9:00 - 17:00<br>Sabtu: 10:00 - 15:00</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="formulir">
+        <form id="id-form">
+          <h1>Kirim Pesan</h1>
+          <div class="formulir-input">
+            <!-- Nama Lengkap (5-20 karakter) -->
+            <label for="name">Nama Lengkap</label>
+            <input id="name" type="text" required>
+            <span id="name-error" class="error-message"></span>
+            
+            <!-- Email (format valid) -->
+            <label for="email">Email</label>
+            <input id="email" type="email" required>
+            <span id="email-error" class="error-message"></span>
+            
+            <!-- Pesan -->
+            <label for="message">Pesan</label>
+            <textarea id="message" required></textarea>
+            <span id="message-error" class="error-message"></span>
+            
+            <button class="kirim-kontak" type="submit">Kirim Pesan</button>
+          </div>
+        </form>
+      </div>
+      
+      <div class="map-container">
+        <iframe src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Dekat%20J5QW+3H4%20Musolla%20Al-amin,%20Temurejo,%20Kembiritan,%20Kec.%20Genteng,%20Kabupaten%20Banyuwangi,%20Jawa%20Timur%2068465+(Fashion%20Shop%20Dannys)&amp;t=&amp;z=19&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+  </section>
+  
+  <footer>
+    <div class="footer-container">
+      <div class="footer-about">
+        <h5>Tentang Kami</h5>
+        <p>Fashion Shop adalah toko fashion online yang menyediakan pakaian berkualitas tinggi dengan desain yang timeless dan elegan.</p>
+        <div class="footer-icon">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </div>
+      
+      <div class="pintas-link">
+        <h5>Link pintasan</h5>
+        <nav class="nav-footer">
+          <a class="a-footer" href="index.html">Beranda</a>
+          <a class="a-footer" href="index(tentang).html">Tentang</a>
+          <a class="a-footer" href="#">Produk</a>
+          <a class="a-footer" href="☆detail-products.html">Detail Produk</a>
+          <a class="a-footer" href="#">Kontak</a>
+        </nav>
+      </div>
+      
+      <div class="footer-fashion">
+        <h5>Fashion Shop</h5>
+        <p>Berlangganan Fashion Shop kami untuk mendapatkan penawaran eksklusif dan update produk terbaru.</p>
+        <form id="footer-form">
+          <div class="footer-border-input">
+            <input class="input-footer" type="email" placeholder="Alamat Email Anda">
+          </div>
+          <button type="submit" class="footer-btn">Berlangganan</button>
+        </form>
+      </div>
+    </div>
+    <div class="border-last-footer">
+      <p>&copy; 2025 Fashion Shop. All Rights Reserved.</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  <script src="main.js"></script>
+  <script>
+    // Fungsi untuk menampilkan/menyembunyikan loading
+function showLoading() {
+  document.getElementById('loadingOverlay').style.display = 'flex';
+}
+
+function hideLoading() {
+  document.getElementById('loadingOverlay').style.opacity = '0';
+  setTimeout(() => {
+    document.getElementById('loadingOverlay').style.display = 'none';
+    document.getElementById('loadingOverlay').style.opacity = '1'; // reset opacity
+  }, 500);
+}
+
+// Cek koneksi internet
+function checkConnection() {
+  if (!navigator.onLine) {
+    showOfflineNotification();
+  }
+}
+
+// Tampilkan notifikasi offline
+function showOfflineNotification() {
+  document.getElementById('offlineNotification').style.display = 'flex';
+  document.getElementById('loadingOverlay').style.display = 'none';
+}
+
+// Sembunyikan notifikasi offline
+function hideOfflineNotification() {
+  document.getElementById('offlineNotification').style.display = 'none';
+}
+
+// Coba lagi koneksi
+document.getElementById('retryButton').addEventListener('click', function () {
+  if (navigator.onLine) {
+    hideOfflineNotification();
+    window.location.reload();
+  } else {
+    alert('Masih offline. Silakan periksa koneksi internet Anda.');
+  }
+});
+
+// Event listener untuk perubahan status koneksi
+window.addEventListener('online', function () {
+  hideOfflineNotification();
+});
+
+window.addEventListener('offline', function () {
+  showOfflineNotification();
+});
+
+// Tampilkan loading saat halaman dimuat
+document.addEventListener('DOMContentLoaded', function () {
+  showLoading();
+  checkConnection();
+
+  // Simulasikan loading halaman
+  setTimeout(function () {
+    hideLoading();
+  }, 1500);
+
+  // Untuk halaman nyata, sembunyikan loading setelah semua assets selesai dimuat
+  window.addEventListener('load', function () {
+    hideLoading();
+  });
+
+  // ================================================
+  // Lengkapkan bagian pengiriman/reset password
+  const formReset = document.getElementById('form-reset-password');
+  const emailInput = document.getElementById('email');
+  const tombolReset = document.getElementById('tombol-reset');
+  const pesanSukses = document.getElementById('pesan-sukses');
+  const pesanError = document.getElementById('pesan-error');
+  const grupPasswordBaru = document.getElementById('grup-password-baru');
+  const passwordBaru = document.getElementById('password-baru');
+  const ikonSalin = document.getElementById('ikon-salin');
+
+  // Fungsi untuk generate password acak
+  function generatePassword() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+    let password = '';
+    for (let i = 0; i < 12; i++) {
+      password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return password;
+  }
+
+  // Fungsi validasi email
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
+
+  // Submit handler
+  formReset.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const email = emailInput.value.trim();
+
+    // Validasi email
+    if (!validateEmail(email)) {
+      pesanError.textContent = 'Format email tidak valid';
+      pesanError.style.display = 'block';
+      pesanSukses.style.display = 'none';
+      return;
+    }
+
+    showLoading();
+
+    setTimeout(function () {
+      hideLoading();
+
+      // Generate password baru
+      const newPassword = generatePassword();
+
+      // Tampilkan password baru
+      passwordBaru.textContent = newPassword;
+      grupPasswordBaru.style.display = 'block';
+
+      // Tampilkan pesan sukses
+      pesanSukses.textContent = `Password baru telah dikirim ke ${email}. Jika tidak ditemukan di inbox, cek folder spam Anda.`;
+      pesanSukses.style.display = 'block';
+      pesanError.style.display = 'none';
+
+      // Sembunyikan semua isi form setelah berhasil
+      formReset.style.display = 'none';
+
+      // Scroll ke password baru
+      grupPasswordBaru.scrollIntoView({ behavior: 'smooth' });
+
+    }, 1500);
+  });
+
+  // Fungsi salin password
+  ikonSalin.addEventListener('click', function () {
+    const passwordText = passwordBaru.textContent;
+    navigator.clipboard.writeText(passwordText).then(function () {
+      const originalIcon = ikonSalin.className;
+      ikonSalin.className = 'fas fa-check';
+      ikonSalin.style.color = '#2ecc71';
+
+      setTimeout(function () {
+        ikonSalin.className = originalIcon;
+        ikonSalin.style.color = '#3498db';
+      }, 2000);
+    });
+  });
+});
+
+  </script>
+</body>
+
+</html>
